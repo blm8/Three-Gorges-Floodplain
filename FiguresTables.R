@@ -167,7 +167,7 @@ sd(EBULL)/sqrt(length(EBULL))
 
 
 ######################################################################################
-## Figure S2. Saturation of O2 and CO2 in water relative to atmospheric equilibrium ##
+## Figure 3. Saturation of O2 and CO2 in water relative to atmospheric equilibrium ##
 ######################################################################################
 
 rm(list=ls())
@@ -331,19 +331,24 @@ colnames(TGR_All)
 par(mfrow=c(1,4))
 min(na.omit(TGR_All$FCH4)) #-0.742
 max(na.omit(TGR_All$FCH4)) #52.945
+
 #Tile 1
 par(mar=c(5, 6, 2, 1)) #bottom, left, top, right
 Jun <- subset(TGR_All, MONTH=="Jun")
 Jun_NAT <- subset(Jun, SITE=="NAT")
 Jun_ENG <- subset(Jun, SITE=="ENG")
+Jun_NAT$TIME
+as.numeric(Jun_NAT$TIME)
+Jun_ENG$TIME
+as.numeric(Jun_ENG$TIME)
 plot(as.numeric(Jun_NAT$TIME), Jun_NAT$O2_CONC, pch=24, col="deepskyblue4", bg="deepskyblue2", xaxt="n", ylim=c(0, 12), xlab="June", ylab=expression("Dissolved" ~ O[2] ~ (mg ~ L^{-1})), frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
 points(as.numeric(Jun_ENG$TIME), Jun_ENG$O2_CONC, pch=22, col="red3", bg="red", cex=1.25)
 par(new=TRUE)
 plot(as.numeric(Jun_NAT$TIME), jitter(Jun_NAT$FCH4, factor=8), pch=2, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
 par(new=TRUE)
 plot(as.numeric(Jun_ENG$TIME), jitter(Jun_ENG$FCH4, factor=8), pch=0, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
-axis(side=1, at=c(4, 8, 12, 16, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
-legend("topright",legend=c(expression("Natural" ~ "Dissolved" ~ O[2]), expression("Aquaculture" ~ "Dissolved" ~ O[2]), expression("Natural" ~ "Diffusive" ~ CH[4] ~ "Flux"), expression("Aquaculture" ~ "Diffusive" ~ CH[4] ~ "Flux")), pch=c(17,15,2,0), cex=c(1.25,1.25,1.25,1.25), pt.cex=c(1.35,1.35,1.35,1.35), col=c("deepskyblue4", "red", "dimgray", "dimgray"), bty="n", text.col=c("black", "black", "dimgray", "dimgray"))
+axis(side=1, at=c(4, 6, 10, 14, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+
 #Tile 2
 par(mar=c(5, 2, 2, 1)) #bottom, left, top, right
 AugDry <- subset(TGR_All, MONTH=="AugDry")
@@ -355,7 +360,8 @@ par(new=TRUE)
 plot(as.numeric(AugDry_NAT$TIME), jitter(AugDry_NAT$FCH4, factor=8), pch=2, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
 par(new=TRUE)
 plot(as.numeric(AugDry_ENG$TIME), jitter(AugDry_ENG$FCH4, factor=8), pch=0, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
-axis(side=1, at=c(4, 8, 12, 16, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+axis(side=1, at=c(4, 6, 10, 14, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+
 #Tile 3
 par(mar=c(5, 2, 2, 1)) #bottom, left, top, right
 AugWet <- subset(TGR_All, MONTH=="AugWet")
@@ -367,22 +373,23 @@ par(new=TRUE)
 plot(as.numeric(AugWet_NAT$TIME), jitter(AugWet_NAT$FCH4, factor=8), pch=2, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
 par(new=TRUE)
 plot(as.numeric(AugWet_ENG$TIME), jitter(AugWet_ENG$FCH4, factor=8), pch=0, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
-axis(side=1, at=c(4, 8, 12, 16, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+axis(side=1, at=c(4, 6, 10, 14, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+
 #Tile 4
 par(mar=c(5, 2, 2, 6)) #bottom, left, top, right
 Jan <- subset(TGR_All, MONTH=="Jan")
 Jan_NAT <- subset(Jan, SITE=="NAT")
 Jan_ENG <- subset(Jan, SITE=="ENG")
-plot(as.numeric(Jan_NAT$TIME), Jan_NAT$O2_CONC, pch=24, col="deepskyblue4", bg="deepskyblue2", ylim=c(0, 12), xlab="January", xaxt="n", yaxt="n", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
-points(as.numeric(Jan_ENG$TIME), Jan_ENG$O2_CONC, pch=22, col="red3", bg="red", cex=1.25)
+plot(as.numeric(Jan_NAT$TIME), Jan_NAT$O2_CONC, pch=21, col="navy", bg="navyblue", ylim=c(0, 12), xlab="January", xaxt="n", yaxt="n", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
+points(as.numeric(Jan_ENG$TIME), Jan_ENG$O2_CONC, pch=21, col="navy", bg="navyblue", cex=1.25)
 par(new=TRUE)
 plot(as.numeric(Jan_NAT$TIME), jitter(Jan_NAT$FCH4, factor=8), pch=2, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
 par(new=TRUE)
 plot(as.numeric(Jan_ENG$TIME), jitter(Jan_ENG$FCH4, factor=8), pch=0, col="dimgray", xaxt="n", ylim=c(0, 40), axes=FALSE, xlab="", ylab="", frame=FALSE, font.axis=2, las=1, cex.lab=1.35, cex=1.25)
-axis(side=1, at=c(4, 8, 12, 16, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
+axis(side=1, at=c(4, 6, 10, 14, 20, 24), labels=c("10:00", "14:00", "18:00", "22:00", "4:00", "8:00"), font.axis=2, las=1)
 axis(side=4, col.axis="dimgray", col.lab="dimgray", font.axis=2, las=1)
 mtext(expression("Diffusive" ~ CH[4] ~ "Flux" ~ (mg ~ m^{-2} ~ h^{-1})), side = 4, cex=1, col="dimgray", padj=2.2)
-
+legend("topleft",legend=c(expression("Natural" ~ "Pond" ~ "Dissolved" ~ O[2]), expression("Aquaculture" ~ "Pond" ~ "Dissolved" ~ O[2]), expression("Three" ~ "Gorges" ~ "Reservoir" ~ "Dissolved" ~ O[2]), expression("Natural" ~ "Diffusive" ~ CH[4] ~ "Flux"), expression("Aquaculture" ~ "Diffusive" ~ CH[4] ~ "Flux")), pch=c(17,15,19,2,0), cex=c(1.25,1.25,1.25,1.25,1.25), pt.cex=c(1.35,1.35,1.35,1.35,1.35), col=c("deepskyblue4", "red", "navy", "dimgray", "dimgray"), bty="n", text.col=c("black", "black", "black", "dimgray", "dimgray"))
 
 ##########################################################
 ## Figure S3a. LME model regression for floodplain FCH4 ##
